@@ -5,12 +5,22 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.webnitro.places.common.model.ATPlace;
+import com.webnitro.places.common.model.Place;
+
 @SpringBootApplication
 public class AccessingDataMongodbApplication implements CommandLineRunner {
 
 	@Autowired
 	private CustomerRepository repository;
 
+	@Autowired
+	private PlacesRepository placesRepository;
+	
+    @Autowired
+    private ATPlaceRepository atplacesRepository;
+	 
+	
 	public static void main(String[] args) {
 		SpringApplication.run(AccessingDataMongodbApplication.class, args);
 	}
@@ -42,7 +52,25 @@ public class AccessingDataMongodbApplication implements CommandLineRunner {
 		for (Customer customer : repository.findByLastName("Smith")) {
 			System.out.println(customer);
 		}
+		
+		System.out.println();
+		placesRepository.deleteAll();
+		/*
+		// fetch all ATPlaces MySql
+		System.out.println("ATPlaces found with findAll():");
+		System.out.println("-------------------------------");
+		for (ATPlace atplace : atplacesRepository.findAll()) {
+			System.out.println(atplace);
+			Place newPlace = new Place(atplace);
+			placesRepository.save(newPlace);
+		}
+		System.out.println();
 
+		  System.out.println("----------Places---------------------");
+		  for (Place aPlace : placesRepository.findAll()) {
+			  System.out.println(aPlace);
+			  }
+		  System.out.println();
+		*/ 
 	}
-
 }
