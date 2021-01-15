@@ -21,8 +21,9 @@ public class AccessingDataMongodbApplication implements CommandLineRunner {
 		repository.deleteAll();
 
 		// save a couple of customers
-		repository.save(new Customer("Alice", "Smith"));
-		repository.save(new Customer("Bob", "Smith"));
+		repository.save(new Customer("Alice", "Smith", "Alice@smith.com"));
+		repository.save(new Customer("Foo Bob", "Smith", "Bob@foo.com"));
+		repository.save(new Customer("Janet", "Jones", "janetj@foo.com"));
 
 		// fetch all customers
 		System.out.println("Customers found with findAll():");
